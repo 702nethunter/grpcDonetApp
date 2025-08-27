@@ -1,0 +1,6 @@
+# .NET build artifacts
+obj/
+bin/
+*.csproj.nuget.*
+project.assets.json
+project.nuget.cache
