@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package telemetry.v1;
+
+// Helpful for .NET code generation
+option csharp_namespace = "Monster.Telemetry.V1";
+
+// Service with two RPCs:
+// 1) SendClientHostData: client -> server request/response
+// 2) ReportRoundTripTime: client -> server TTL (round-trip) metric
+service ClientTelemetry {
+  rpc SendClientHostData (ClientHostDataRequest) returns (ClientHostDataResponse);
+  rpc ReportRoundTripTime (RttReportRequest) returns (RttReportAck);
+}
+
+// --------------------
+// Messages
+// --------------------
+
+// Client -> Server (initial request)
+message ClientHostDataRequest {
+  int64  host_id               = 1;  // HostID (long)
+  string host_name             = 2;  // HostName (string)
+  string host_ip               = 3;  // HostIP (string)
+  int64  client_sequence_num   = 4;  // ClientSequenceNumber (long)
+  int64  request_id            = 5;  // RequestID (long)
+  string client_os_version     = 6;  // ClientOSVersion (string)
+  int64  session_id            = 7;  // SessionID (long)
+  int64  timestamp_ms          = 8;  // Timestamp in milliseconds since epoch (long)
+}
+
+// Server -> Client (response)
+message ClientHostDataResponse {
+  int64 host_id           = 1;  // HostID (long)
+  int64 session_id        = 2;  // SessionID (long)
+  int64 request_id        = 3;  // RequestID (long)
+  int64 timestamp_ms      = 4;  // Timestamp in milliseconds since epoch (long)
+  bool  is_enabled        = 5;  // IsEnabled (bool)
+  int32 keep_alive_seconds= 6;  // keepAliveInterval (int) - using seconds
+}
+
+// Client -> Server (follow-up TTL/RTT report)
+// The client posts the measured round-trip latency for the request above.
+message RttReportRequest {
+  int64  host_id               = 1;  // HostID (long)
+  int64  session_id            = 2;  // SessionID (long)
+  int64  request_id            = 3;  // RequestID (long)
+  int64  client_sequence_num   = 4;  // ClientSequenceNumber (long)
+  int64  timestamp_ms          = 5;  // Timestamp at report send (ms since epoch)
+  double ttl_milliseconds      = 6;  // TTL/RTT measurement (double)
+}
+
+// Server -> Client acknowledgement for RTT report
+message RttReportAck {
+  bool accepted      = 1;  // true if processed/recorded
+  string message     = 2;  // optional info/debug text
+}
