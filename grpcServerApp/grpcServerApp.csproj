@@ -6,7 +6,9 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>dotnet-grpcServerApp-e9e2ffaf-dcc4-4bd6-a908-6905d0dacbb5</UserSecretsId>
   </PropertyGroup>
-
+<ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Google.Protobuf" Version="3.32.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.71.0" />
@@ -15,6 +17,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.4" />
+    <PackageReference Include="Npgsql" Version="9.0.3" />
     <PackageReference Include="Serilog.Extensions.Logging" Version="9.0.2" />
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,12 @@
+2025-08-27 05:42:37.830 +00:00 [INF] Worker running at: "2025-08-27T05:42:37.8276153+00:00"
+2025-08-27 05:42:37.889 +00:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-08-27 05:42:37.889 +00:00 [INF] Hosting environment: Development
+2025-08-27 05:42:37.890 +00:00 [INF] Content root path: /home/narendracool/dotnet/grpcDotnetApp/grpcServerApp
+2025-08-27 05:42:38.858 +00:00 [INF] Worker running at: "2025-08-27T05:42:32025-08-27 05:42:45.208 +00:00 [INF] Application is shutting down...
+at: "2025-08-27T05:42:39.8594257+00:00"
+2025-08-27 05:42:40.859 +00:00 [INF] Worker running at: "2025-08-27T05:42:40.8598804+00:00"
+2025-08-27 05:42:41.860 +00:00 [INF] Worker running at: "2025-08-27T05:42:41.8603360+00:00"
+2025-08-27 05:42:42.861 +00:00 [INF] Worker running at: "2025-08-27T05:42:42.8609581+00:00"
+2025-08-27 05:42:43.861 +00:00 [INF] Worker running at: "2025-08-27T05:42:43.8612917+00:00"
+2025-08-27 05:42:44.861 +00:00 [INF] Worker running at: "2025-08-27T05:42:44.8616357+00:00"
+2025-08-27 05:42:45.208 +00:00 [INF] Application is shutting down...
