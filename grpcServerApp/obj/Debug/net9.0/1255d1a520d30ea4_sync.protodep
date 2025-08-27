@@ -1,2 +1,0 @@
-obj/Debug/net9.0/Protos/Sync.cs \
-obj/Debug/net9.0/Protos/SyncGrpc.cs: Protos/sync.proto
