@@ -13,6 +13,13 @@ CREATE TABLE ClientHostDataMetrics (
     DateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE TABLE ClientHostDataMetricsHist (
+    MetricID BIGINT GENERATED ALWAYS AS IDENTITY,
+    HostID   BIGINT NOT NULL,
+    TTL      double precision,
+    DateAdded TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (MetricID, DateAdded)
+) PARTITION BY RANGE (DateAdded);
 
 
 CREATE OR REPLACE PROCEDURE upsert_client_host_data(
