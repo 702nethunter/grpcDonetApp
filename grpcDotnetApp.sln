@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Libraries", "Libraries", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monster.Logging", "Libraries\Monster.Logging\Monster.Logging.csproj", "{79BBE4D9-5FE2-4F8B-AD5B-B692CA59790F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monster.Core", "Libraries\Monster.Core\Monster.Core.csproj", "{C388E62B-19BF-4A1C-891C-0C64B8DFF844}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,11 +59,24 @@ Global
 		{79BBE4D9-5FE2-4F8B-AD5B-B692CA59790F}.Release|x64.Build.0 = Release|Any CPU
 		{79BBE4D9-5FE2-4F8B-AD5B-B692CA59790F}.Release|x86.ActiveCfg = Release|Any CPU
 		{79BBE4D9-5FE2-4F8B-AD5B-B692CA59790F}.Release|x86.Build.0 = Release|Any CPU
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844}.Debug|x64.Build.0 = Debug|Any CPU
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844}.Debug|x86.Build.0 = Debug|Any CPU
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844}.Release|x64.ActiveCfg = Release|Any CPU
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844}.Release|x64.Build.0 = Release|Any CPU
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844}.Release|x86.ActiveCfg = Release|Any CPU
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{79BBE4D9-5FE2-4F8B-AD5B-B692CA59790F} = {F2E35B3E-9711-EDEC-6202-DB40BDEED14A}
+		{C388E62B-19BF-4A1C-891C-0C64B8DFF844} = {F2E35B3E-9711-EDEC-6202-DB40BDEED14A}
 	EndGlobalSection
 EndGlobal
