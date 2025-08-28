@@ -53,6 +53,10 @@ message RttReportRequest {
 
 // Server -> Client acknowledgement for RTT report
 message RttReportAck {
-  bool accepted      = 1;  // true if processed/recorded
-  string message     = 2;  // optional info/debug text
+  int64 host_id=1;
+  int64 session_id=2;
+  int64 request_id=3;
+  int64 timestamp_ms=4;
+  bool accepted      = 5;  // true if processed/recorded
+  string message     = 6;  // optional info/debug text
 }

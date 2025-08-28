@@ -24,4 +24,9 @@
     <ProjectReference Include="..\Libraries\Monster.Logging\Monster.Logging.csproj" />
     <ProjectReference Include="..\Libraries\Monster.Core\Monster.Core.csproj" />
   </ItemGroup>
+    <ItemGroup>
+    <None Update="settings.json">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+</ItemGroup>
 </Project>

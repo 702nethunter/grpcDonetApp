@@ -7,16 +7,45 @@ public class GrpcServerManager
     private readonly HostDataAccess _dataAccess;
     private IConfiguration _config;
     private ConcurrentDictionary<long,HostStorage> _hostIdDict = new ConcurrentDictionary<long,HostStorage>();
-    public GrpcServerManager(ILogger<GrpcServerManager> logger,IConfiguration configuration,HostDataAccess dataAccess)
+    private CoreService _coreService;
+    public GrpcServerManager(ILogger<GrpcServerManager> logger,IConfiguration configuration,HostDataAccess dataAccess,
+    CoreService coreService)
     {
         _logger=logger;
         _config = configuration;
-       
+        _coreService = coreService;      
         _dataAccess = dataAccess;
     }
     public void Init()
     {
 
+    }
+    public async Task<int> ProcessTTLData(TTLRequest request)
+    {
+        try
+        {
+              //Store in DB
+       
+
+        await _dataAccess.UpsertClientHostMetricAsync(
+            request.HostId,
+            request.TTL,
+            request.DateRecieved);
+
+        _logger.LogInformation(
+            "Processed TTL information for HostId:{HostId}, TTL:{TTL}, Date:{DateAdded}",
+            request.HostId,
+            request.TTL,
+             request.DateRecieved);
+
+
+        }
+        catch (System.Exception ex)
+        {
+            _logger.LogError(ex,"Error in processing ClientHostData");   
+            return -1;
+        }
+        return 0;
     }
     public async Task<HostDataResponse> ProcessClientHostDataRequest(HostDataRequest request)
     {

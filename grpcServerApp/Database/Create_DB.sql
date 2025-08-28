@@ -6,6 +6,13 @@ CREATE TABLE ClientHostData (
     ClientVersion VARCHAR(20),
     DateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+CREATE TABLE ClientHostDataMetrics (
+    MetricID BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    HostID BIGINT NOT NULL,
+    TTL double precision,
+    DateAdded TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
 
 
 CREATE OR REPLACE PROCEDURE upsert_client_host_data(

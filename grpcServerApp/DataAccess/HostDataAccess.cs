@@ -33,4 +33,22 @@ public class HostDataAccess
 
         await cmd.ExecuteNonQueryAsync();
     }
+    public async Task UpsertClientHostMetricAsync(long hostId, double ttl, DateTime? dateAdded = null)
+    {
+        await using var conn = new NpgsqlConnection(_connectionString);
+        await conn.OpenAsync();
+
+        await using var cmd = new NpgsqlCommand(
+            "CALL upsert_client_host_metric(@hostId, @ttl, @dateAdded)", conn);
+
+        cmd.Parameters.AddWithValue("hostId", hostId);
+        cmd.Parameters.AddWithValue("ttl", ttl);
+
+        if (dateAdded.HasValue)
+            cmd.Parameters.AddWithValue("dateAdded", dateAdded.Value);
+        else
+            cmd.Parameters.AddWithValue("dateAdded", DBNull.Value);
+
+        await cmd.ExecuteNonQueryAsync();
+    }
 }

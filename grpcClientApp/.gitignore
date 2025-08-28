@@ -4,3 +4,4 @@ bin/
 *.csproj.nuget.*
 project.assets.json
 project.nuget.cache
+logs/

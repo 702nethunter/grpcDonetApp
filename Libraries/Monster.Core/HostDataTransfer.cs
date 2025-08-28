@@ -15,3 +15,9 @@ public class HostDataResponse
     public bool IsEnabled {get;set;}
     public int KeepAliveSeconds {get;set;}
 }
+public class TTLRequest 
+{
+    public long HostId{get;set;}
+    public double TTL {get;set;}
+    public DateTime DateRecieved{get;set;}
+}

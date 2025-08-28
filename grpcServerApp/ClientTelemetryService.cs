@@ -8,16 +8,32 @@ public class ClientTelemetryService:ClientTelemetry.ClientTelemetryBase
 {
     private ILogger<ClientTelemetryService> _logger;
     private GrpcServerManager _serverManager;
-    public ClientTelemetryService(ILogger<ClientTelemetryService> logger,GrpcServerManager serverManager)
+    private CoreService _coreService;
+    public ClientTelemetryService(ILogger<ClientTelemetryService> logger,GrpcServerManager serverManager,CoreService coreService)
     {
         _logger = logger;
         _serverManager = serverManager;
+        _coreService = coreService;
     }
     
-    public override Task<RttReportAck> ReportRoundTripTime(RttReportRequest request,ServerCallContext context)  
+    public override async Task<RttReportAck> ReportRoundTripTime(RttReportRequest request,ServerCallContext context)  
     {
+        _logger.LogInformation($"Processing Round Trip time for HostId:{request.HostId},TTL:{request.TtlMilliseconds}");
+        TTLRequest ttlRequest = new();
+        ttlRequest.HostId = request.HostId;
+        ttlRequest.TTL = request.TtlMilliseconds;
+        ttlRequest.DateRecieved = DateTimeOffset
+            .FromUnixTimeMilliseconds(request.TimestampMs)
+            .ToLocalTime()
+            .DateTime;
+        var result = await _serverManager.ProcessTTLData(ttlRequest);
         RttReportAck ack=new();
-        return Task.FromResult(ack);
+        ack.SessionId = request.SessionId;
+        ack.RequestId = request.RequestId;
+        ack.HostId = request.HostId;
+        ack.TimestampMs = _coreService.GetTimestampMs();
+        _logger.LogInformation($"Sending TTL Report Ack to HostId:{request.HostId},SessionId:{request.SessionId},RequestId:{request.RequestId}");
+        return ack;
     }
     public override async Task<ClientHostDataResponse> SendClientHostData(
              ClientHostDataRequest request,
@@ -47,5 +63,6 @@ public class ClientTelemetryService:ClientTelemetry.ClientTelemetryBase
         
         return clientResponse;
     }
+   
 
 }

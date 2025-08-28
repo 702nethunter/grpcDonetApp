@@ -3,18 +3,18 @@ namespace grpcServerApp;
 public class Worker : BackgroundService
 {
     private readonly ILogger<Worker> _logger;
-    private GrpcServerManager _serverManager;
+    
 
-    public Worker(ILogger<Worker> logger,GrpcServerManager serverManager)
+    public Worker(ILogger<Worker> logger)
     {
         _logger = logger;
-        _serverManager = serverManager;
+       
     }
 
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
-        _serverManager.Init();
-        await _serverManager.StartAsync(stoppingToken);
+      
+        
         /*
         while (!stoppingToken.IsCancellationRequested)
         {
@@ -28,7 +28,7 @@ public class Worker : BackgroundService
     }
     public override async Task StopAsync(CancellationToken stoppingToken)
     {
-        await _serverManager.StopAsync(stoppingToken);
+       
          // Optionally call the base to keep default behavior (waits for ExecuteAsync to finish)
         await base.StopAsync(stoppingToken);
     }   
