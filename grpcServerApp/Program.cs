@@ -12,6 +12,13 @@ builder.Logging.AddSerilog(LogConfigurator.Configure("GrpcServerApp"));
 
 // Add gRPC server support (uses Kestrel internally)
 builder.Services.AddGrpc();
+builder.Services.AddSingleton<HostDataAccess>(sp =>
+{
+    var config = sp.GetRequiredService<IConfiguration>();
+    var connStr = config.GetConnectionString("PostgresDb");
+    var logger = sp.GetRequiredService<ILogger<HostDataAccess>>();
+    return new HostDataAccess(logger, connStr);
+});
 
 builder.Services.AddSingleton<GrpcServerManager>();
 // Add your background worker

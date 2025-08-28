@@ -26,8 +26,10 @@ public class Worker : BackgroundService
         }
         */
     }
-    protected override async Task StopAsync(CancellationToken stoppingToken)
+    public override async Task StopAsync(CancellationToken stoppingToken)
     {
         await _serverManager.StopAsync(stoppingToken);
+         // Optionally call the base to keep default behavior (waits for ExecuteAsync to finish)
+        await base.StopAsync(stoppingToken);
     }   
 }
